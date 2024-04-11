@@ -66,6 +66,22 @@ def process_photos():
 # Create main window
 root = tk.Tk()
 root.title("Extract Geotags from Photos")
+root.resizable(False, False)
+root.iconbitmap("icon.ico") #ico format
+#root.iconphoto(True, tk.PhotoImage(file="icon.png")) png format
+# try:
+#     root.iconbitmap("icon.ico")  # Use ICO format for Windows
+# except tk.TclError:
+#     try:
+#         root.iconphoto(True, tk.PhotoImage(file="icon.png"))  # Use PNG format as fallback
+#     except tk.TclError:
+#         try:
+#             root.iconphoto(True, tk.PhotoImage(file="icon.jpg"))  # Use JPEG format as fallback
+#         except tk.TclError:
+#             try:
+#                 root.iconphoto(True, tk.PhotoImage(file="icon.gif"))  # Use GIF format as fallback
+#             except tk.TclError:
+#                 print("Error: Could not set window icon.")
 
 # Create widgets
 folder_label = tk.Label(root, text="Folder Path:")
