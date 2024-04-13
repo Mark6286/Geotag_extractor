@@ -1,6 +1,7 @@
 import os
 import exifread
 import csv
+import sys
 import tkinter as tk
 from tkinter import filedialog, messagebox
 
@@ -59,6 +60,17 @@ def process_photos():
         messagebox.showerror("Error", "Please provide both a folder path and an output CSV file path.")
         return
 
+
+    if not csv_file:
+        messagebox.showerror("Error", "Please provide an output CSV file path.")
+        return
+
+    geotags = extract_geotags(folder_path)
+    
+    if not geotags:
+        messagebox.showinfo("No Coordinates Found", "No coordinates found in the selected folder.")
+        return
+
     geotags = extract_geotags(folder_path)
     save_to_csv(geotags, csv_file)
     messagebox.showinfo("Success", "Geotags extracted and saved to CSV file successfully.")
@@ -67,7 +79,7 @@ def process_photos():
 root = tk.Tk()
 root.title("Extract Geotags from Photos")
 root.resizable(False, False)
-root.iconbitmap("icon.ico") #ico format
+#root.iconbitmap("icon.ico") #ico format
 #root.iconphoto(True, tk.PhotoImage(file="icon.png")) png format
 # try:
 #     root.iconbitmap("icon.ico")  # Use ICO format for Windows
